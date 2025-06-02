@@ -10,4 +10,6 @@ public interface PersonaService {
     List<Persona> listarPersonas();
 
     Persona buscarPorId(Long id);
+
+    List<Persona> buscarPorNombre(String nombre);
 }

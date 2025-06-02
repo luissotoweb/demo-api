@@ -105,6 +105,40 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Buscar por Nombre",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Luis Miguel\",\r\n  \"apellido\": \"Soto\",\r\n  \"edad\": 36,\r\n  \"email\": \"luis.miguel@example.com\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/personas/buscar?nombre=Juan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"personas",
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Juan"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

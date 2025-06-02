@@ -49,4 +49,12 @@ public class PersonaServiceImpl implements PersonaService {
         }
         return persona;
     }
+
+    @Override
+    public List<Persona> buscarPorNombre(String nombre) {
+        logger.info("Buscando personas con nombre que contenga: {}", nombre);
+        return personaRepository.findByNombreContainingIgnoreCase(nombre);
+    }
+
+
 }

@@ -13,10 +13,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -45,7 +48,7 @@ class PersonaControllerTest {
 
     @Test
     void testGuardarPersona() throws Exception {
-        Mockito.when(personaService.guardarPersona(any(Persona.class))).thenReturn(persona);
+        when(personaService.guardarPersona(any(Persona.class))).thenReturn(persona);
 
         mockMvc.perform(post("/api/personas")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -59,7 +62,7 @@ class PersonaControllerTest {
 
     @Test
     void testListarPersonas() throws Exception {
-        Mockito.when(personaService.listarPersonas()).thenReturn(Arrays.asList(persona));
+        when(personaService.listarPersonas()).thenReturn(Arrays.asList(persona));
 
         mockMvc.perform(get("/api/personas"))
                 .andExpect(status().isOk())
@@ -69,7 +72,7 @@ class PersonaControllerTest {
 
     @Test
     void testBuscarPersonaPorId_Existente() throws Exception {
-        Mockito.when(personaService.buscarPorId(1L)).thenReturn(persona);
+        when(personaService.buscarPorId(1L)).thenReturn(persona);
 
         mockMvc.perform(get("/api/personas/1"))
                 .andExpect(status().isOk())
@@ -78,13 +81,40 @@ class PersonaControllerTest {
 
     @Test
     void testBuscarPersonaPorId_NoExistente() throws Exception {
-        Mockito.when(personaService.buscarPorId(99L)).thenReturn(null);
+        when(personaService.buscarPorId(99L)).thenReturn(null);
 
         mockMvc.perform(get("/api/personas/99"))
                 .andExpect(status().isNotFound());
     }
 
-    // Utilidad para convertir un objeto a JSON
+    @Test
+    public void testBuscarPorNombre() throws Exception {
+        Persona persona1 = new Persona(1L, "Luis", "Soto", 35, "luis@example.com", null, null);
+        Persona persona2 = new Persona(2L, "Luisa", "Perez", 28, "luisa@example.com", null, null);
+
+        List<Persona> personas = Arrays.asList(persona1, persona2);
+
+        when(personaService.buscarPorNombre("Luis")).thenReturn(personas);
+
+        mockMvc.perform(get("/personas/buscar")
+                        .param("nombre", "Luis"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].nombre").value("Luis"))
+                .andExpect(jsonPath("$[1].nombre").value("Luisa"));
+    }
+
+    @Test
+    public void testBuscarPorNombre_NoContent() throws Exception {
+        when(personaService.buscarPorNombre("NoExiste")).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/personas/buscar")
+                        .param("nombre", "NoExiste"))
+                .andExpect(status().isNoContent());
+    }
+
+
+
     private static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
