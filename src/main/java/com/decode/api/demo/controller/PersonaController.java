@@ -1,5 +1,6 @@
 package com.decode.api.demo.controller;
 
+import com.decode.api.demo.exception.ResourceNotFoundException;
 import com.decode.api.demo.model.Persona;
 import com.decode.api.demo.service.PersonaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,6 +58,8 @@ public class PersonaController {
         logger.info("Solicitud para listar todas las personas");
         List<Persona> personas = personaService.listarPersonas();
         logger.info("Cantidad de personas encontradas: {}", personas.size());
+        if (personas.isEmpty())
+            throw new ResourceNotFoundException("No se encontraron personas para mostrar");
         return ResponseEntity.ok(personas);
     }
 
@@ -79,7 +82,7 @@ public class PersonaController {
             return ResponseEntity.ok(persona);
         } else {
             logger.info("No se encontró persona con id: {}", id);
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("No se encontró la persona con id: " + id);
         }
     }
 
@@ -104,7 +107,7 @@ public class PersonaController {
 
         if (personaExistente == null) {
             logger.warn("No se encontró persona con id: {} para actualizar", id);
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("No se encontró persona con id: " + id);
         }
 
         personaExistente.setNombre(personaActualizada.getNombre());
@@ -131,7 +134,7 @@ public class PersonaController {
         List<Persona> personas = personaService.buscarPorNombre(nombre);
         if (personas.isEmpty()) {
             logger.info("No se encontraron personas con el nombre: {}", nombre);
-            return ResponseEntity.noContent().build();
+            throw new ResourceNotFoundException("No se encontraron personas con el nombre: " + nombre);
         }
         logger.info("Se encontraron {} personas con el nombre: {}", personas.size(), nombre);
         return ResponseEntity.ok(personas);
