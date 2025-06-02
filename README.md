@@ -1,4 +1,4 @@
-# API de Registros - Demo con Spring Boot 3.5
+# API de Registro de Personas - Demo con Spring Boot 3.5
 
 Este proyecto es una API REST simple para gestionar registros de personas, desarrollado con Spring Boot 3.5, Java 21, y documentado con Swagger/OpenAPI 3.
 
