@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "8a8cf3aa-ee0f-46dd-8e9f-78a2fffff2cc",
+		"name": "API-Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34573538"
+	},
+	"item": [
+		{
+			"name": "Crear Persona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Luis\",\r\n  \"apellido\": \"Soto\",\r\n  \"edad\": 35,\r\n  \"email\": \"luis@example.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/personas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista de Personas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/personas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/personas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"personas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Persona",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Luis Miguel\",\r\n  \"apellido\": \"Soto\",\r\n  \"edad\": 36,\r\n  \"email\": \"luis.miguel@example.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/personas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"personas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

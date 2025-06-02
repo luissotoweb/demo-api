@@ -80,6 +80,25 @@ NOTAS
 - Swagger UI se genera automáticamente usando Springdoc OpenAPI Starter.
 
 ----------------------------------------
+Pruebas con Postman
+----------------------------------------
+
+Para facilitar las pruebas de la API, se incluye una colección de Postman exportada:
+
+📁 `src/main/resources/postman/personas-api.postman_collection.json`
+
+----------------------------------------
+ Cómo usarla:
+----------------------------------------
+
+1. Abrir Postman
+2. Importar la colección desde el archivo mencionado
+3. Ejecutar las peticiones disponibles (Crear Persona, Lista de Personas, Persona por ID, Actualizar Persona)
+
+> Asegurate de que la API esté corriendo en `http://localhost:8080/api/personas` 
+
+
+----------------------------------------
 AUTOR
 ----------------------------------------
 Luis M. Soto S.
