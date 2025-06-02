@@ -85,7 +85,7 @@ Pruebas con Postman
 
 Para facilitar las pruebas de la API, se incluye una colección de Postman exportada:
 
-📁 `src/main/resources/postman/personas-api.postman_collection.json`
+📁 `src/main/resources/postman/API-Demo.postman_collection.json`
 
 ----------------------------------------
  Cómo usarla:
