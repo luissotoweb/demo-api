@@ -26,17 +26,17 @@ ARQUITECTURA DEL CÓDIGO
 
 El código está organizado por capas:
 
-- **Entidad**: `Persona.java` contiene los atributos de la persona (nombre, apellido, edad, email).
-- **Repositorio**: Interfaz JPA para acceder a la base de datos.
-- **Servicio**: Lógica de negocio separada en interfaz e implementación.
-- **Controlador**: Exposición de la API REST.
-- **Configuración**: Clase `SwaggerConfig.java` para exponer la documentación OpenAPI.
+- **Model**: `Persona.java` contiene los atributos de la persona (nombre, apellido, edad, email).
+- **Repository**: Interfaz JPA para acceder a la base de datos.
+- **Service**: Lógica de negocio separada en interfaz e implementación.
+- **Controller**: Exposición de la API REST.
+- **Config**: Clase `SwaggerConfig.java` para exponer la documentación OpenAPI.
 
 ----------------------------------------
 CÓMO EJECUTAR EL PROYECTO
 ----------------------------------------
 1. Clonar el repositorio:
-   git clone <url-del-repo>
+   git clone https://github.com/luissotoweb/demo-api.git
 
 2. Navegar al directorio del proyecto:
    cd demo
@@ -76,7 +76,6 @@ MODELO DE PERSONA (JSON)
 NOTAS
 ----------------------------------------
 - La base de datos es en memoria (H2), se reinicia en cada ejecución.
-- El proyecto está diseñado como base para una evaluación técnica o pruebas de API REST.
 - Swagger UI se genera automáticamente usando Springdoc OpenAPI Starter.
 
 ----------------------------------------
